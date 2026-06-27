@@ -1,6 +1,4 @@
-export default function SuccessMessage() {
-  // Generate a random transaction ID
-  const transactionId = Math.random().toString(36).substring(2, 12).toUpperCase();
+export default function SuccessMessage({ transactionId }) {
   const date = new Date().toLocaleDateString();
 
   return (
@@ -44,8 +42,8 @@ export default function SuccessMessage() {
           </div>
 
           {/* Fake Barcode */}
-          <div className="pt-8 text-center flex justify-center">
-             <div className="font-barcode text-5xl tracking-widest">
+          <div className="pt-8 text-center flex justify-center overflow-hidden w-full">
+             <div className="font-barcode text-4xl md:text-5xl tracking-widest break-all md:break-normal px-2">
                 *{transactionId}*
              </div>
           </div>

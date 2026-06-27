@@ -6,6 +6,7 @@ import './App.css';
 
 function App() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [transactionId, setTransactionId] = useState('');
   const [isDark, setIsDark] = useState(false);
 
   // Apply dark mode class to HTML root
@@ -18,10 +19,20 @@ function App() {
   }, [isDark]);
 
   const handleFormSubmit = async (data) => {
+    // Generate the ref ID before submission
+    const newTransactionId = Math.random().toString(36).substring(2, 12).toUpperCase();
+    
+    // Add the ref_id to the data payload
+    const submissionData = {
+      ...data,
+      ref_id: newTransactionId
+    };
+
     // If supabase isn't configured yet, just log and show success (for local testing without keys)
     if (!supabase) {
       console.warn("Supabase keys not found in environment variables. Simulating submission:");
-      console.log(data);
+      console.log(submissionData);
+      setTransactionId(newTransactionId);
       setIsSubmitted(true);
       return;
     }
@@ -29,7 +40,7 @@ function App() {
     try {
       const { error } = await supabase
         .from('alumni_registrations')
-        .insert([data]);
+        .insert([submissionData]);
 
       if (error) {
         console.error("Supabase Insertion Error:", error);
@@ -37,6 +48,7 @@ function App() {
         return;
       }
       
+      setTransactionId(newTransactionId);
       setIsSubmitted(true);
     } catch (err) {
       console.error("Unexpected error:", err);
@@ -72,7 +84,7 @@ function App() {
           {!isSubmitted ? (
             <RegistrationForm onSubmit={handleFormSubmit} />
           ) : (
-            <SuccessMessage />
+            <SuccessMessage transactionId={transactionId} />
           )}
         </div>
       </main>
