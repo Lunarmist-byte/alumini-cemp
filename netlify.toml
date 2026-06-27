@@ -1,0 +1,14 @@
+[build]
+  # The directory containing the build output
+  publish = "dist"
+  
+  # The command to run to build the app
+  command = "npm run build"
+
+# Redirects are essential for Single Page Applications (SPAs) like React/Vite.
+# This ensures that any route entered in the browser redirects to index.html 
+# so React Router can handle it.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
