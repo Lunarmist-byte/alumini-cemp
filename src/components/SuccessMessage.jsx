@@ -44,7 +44,7 @@ export default function SuccessMessage({ transactionId }) {
           {/* Fake Barcode */}
           <div className="pt-8 text-center flex justify-center overflow-hidden w-full">
              <div className="font-barcode text-4xl md:text-5xl tracking-widest break-all md:break-normal px-2">
-                *{transactionId}*
+                {transactionId}
              </div>
           </div>
         </div>
