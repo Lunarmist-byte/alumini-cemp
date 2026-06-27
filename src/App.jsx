@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import RegistrationForm from './components/RegistrationForm';
 import SuccessMessage from './components/SuccessMessage';
+import { supabase } from './supabaseClient';
 import './App.css';
 
 function App() {
@@ -16,9 +17,31 @@ function App() {
     }
   }, [isDark]);
 
-  const handleFormSubmit = (data) => {
-    console.log("Form Submitted:", data);
-    setIsSubmitted(true);
+  const handleFormSubmit = async (data) => {
+    // If supabase isn't configured yet, just log and show success (for local testing without keys)
+    if (!supabase) {
+      console.warn("Supabase keys not found in environment variables. Simulating submission:");
+      console.log(data);
+      setIsSubmitted(true);
+      return;
+    }
+
+    try {
+      const { error } = await supabase
+        .from('alumni_registrations')
+        .insert([data]);
+
+      if (error) {
+        console.error("Supabase Insertion Error:", error);
+        alert("Failed to record submission. Please check the database connection.");
+        return;
+      }
+      
+      setIsSubmitted(true);
+    } catch (err) {
+      console.error("Unexpected error:", err);
+      alert("An unexpected error occurred.");
+    }
   };
 
   return (
