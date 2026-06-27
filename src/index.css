@@ -10,11 +10,10 @@
   
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-barcode: 'Libre Barcode 39', 'Courier New', monospace; /* Fallback to monospace if font not loaded */
+  --font-barcode: 'Libre Barcode 39', 'Courier New', monospace;
 }
 
 :root {
-  /* Light Mode */
   --bg-paper: #F5F4F0;
   --text-ink: #1C1C1A;
   --accent: #C84B31;
@@ -23,7 +22,6 @@
 }
 
 .dark {
-  /* Dark Mode */
   --bg-paper: #121212;
   --text-ink: #EAEAEA;
   --accent: #E66B4D;
@@ -36,13 +34,11 @@
     @apply bg-paper text-ink font-sans antialiased min-h-screen overflow-x-hidden selection:bg-accent selection:text-white transition-colors duration-300;
   }
 
-  /* Reset form elements to allow for clean styling */
   input, select, button {
     @apply outline-none appearance-none;
   }
 }
 
-/* Organic Noise Overlay to break the digital perfection */
 .bg-noise {
   position: fixed;
   top: 0;
@@ -61,7 +57,6 @@
   mix-blend-mode: screen;
 }
 
-/* physical receipt edges */
 .receipt-edge {
   background-image: radial-gradient(circle at 10px 0, transparent 10px, var(--input-bg) 11px);
   background-size: 20px 20px;

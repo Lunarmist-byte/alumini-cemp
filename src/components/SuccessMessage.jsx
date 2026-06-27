@@ -3,11 +3,8 @@ export default function SuccessMessage({ transactionId }) {
 
   return (
     <div className="w-full bg-input-bg border-2 border-ink shadow-[8px_8px_0_0_var(--text-ink)] relative transform rotate-1 transition-transform duration-500 ease-out hover:rotate-0">
-      
-      {/* Receipt zig-zag top edge */}
       <div className="receipt-edge w-full h-4 absolute top-[-10px] left-0"></div>
 
-      {/* The Red Stamp */}
       <div className="absolute top-8 right-8 z-20 transform rotate-12 opacity-90 pointer-events-none">
         <div className="border-4 border-stamp text-stamp px-4 py-1 text-3xl font-black font-sans tracking-widest uppercase shadow-sm">
           APPROVED
@@ -41,7 +38,6 @@ export default function SuccessMessage({ transactionId }) {
             <p className="mt-2">WITH LOVE, YOUR JUNIORS &lt;3</p>
           </div>
 
-          {/* Fake Barcode */}
           <div className="pt-8 text-center flex justify-center overflow-hidden w-full">
              <div className="font-barcode text-4xl md:text-5xl tracking-widest break-all md:break-normal px-2">
                 {transactionId}
@@ -50,7 +46,6 @@ export default function SuccessMessage({ transactionId }) {
         </div>
       </div>
       
-      {/* Receipt zig-zag bottom edge */}
       <div className="receipt-edge w-full h-4 absolute bottom-[-10px] left-0 rotate-180"></div>
     </div>
   );

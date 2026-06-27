@@ -9,7 +9,6 @@ function App() {
   const [transactionId, setTransactionId] = useState('');
   const [isDark, setIsDark] = useState(false);
 
-  // Apply dark mode class to HTML root
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add('dark');
@@ -19,16 +18,13 @@ function App() {
   }, [isDark]);
 
   const handleFormSubmit = async (data) => {
-    // Generate the ref ID before submission
     const newTransactionId = Math.random().toString(36).substring(2, 12).toUpperCase();
     
-    // Add the ref_id to the data payload
     const submissionData = {
       ...data,
       ref_id: newTransactionId
     };
 
-    // If supabase isn't configured yet, just log and show success (for local testing without keys)
     if (!supabase) {
       console.warn("Supabase keys not found in environment variables. Simulating submission:");
       console.log(submissionData);
@@ -59,7 +55,6 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen bg-paper text-ink selection:bg-accent selection:text-white transition-colors duration-300 relative">
       
-      {/* Organic Noise Texture Overlay */}
       <div className="bg-noise"></div>
 
       <header className="border-b-2 border-ink py-6 px-6 md:px-12 flex flex-col md:flex-row justify-between items-baseline gap-4 relative z-10 bg-paper">
